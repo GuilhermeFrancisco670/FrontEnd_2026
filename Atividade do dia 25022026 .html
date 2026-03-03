@@ -56,6 +56,7 @@
           <p>Imagine que você quer guardar a palavra "Hello" no computador. Em C, você não tem um tipo chamado "texto" — em vez disso, você usa uma sequência de letras (caracteres) guardadas uma do lado da outra na memória. Isso é uma string.</p>
           <p>Todo string em C termina com um caractere especial invisível chamado terminador nulo ('\0'). Ele serve para o programa saber onde a palavra acaba.</p>
       </section>
+      <div id="A biblioteca <string.h>"      
       <section id=" A biblioteca <string.h>">
         <h2> A biblioteca <string.h> </h2>
         <p> Para usar as funções de manipulação de strings, você precisa incluir essa biblioteca no topo do código: </p>
@@ -65,7 +66,8 @@
         </code>  
         </pre>
       </section>
-      <section id=" Como declarar e inicializar uma String ?">
+      <div id="Como declarar e inicializar uma String ?">
+      <section id="Como declarar e inicializar uma String ?">
           <h2>  Como declarar e inicializar uma String ? </h2>
           <h3> Existem duas formas principais: </h3>
           <p> Forma 1 — Tamanho fixo (você define o espaço):</p>
@@ -82,6 +84,7 @@
           </pre>
           <p> Aqui o compilador conta sozinho quantas letras tem e reserva o espaço certo (incluindo o \0 no final). Muito mais prático! </p>
       </section>
+	<div id="Como acessar uma letra específica da String ?">
       <section id=" Como acessar uma letra específica da String? ">
          <h2> Como acessar uma letra específica da String ? </h2>
          <p> Como a string é um array (uma lista), cada letra tem um número de posição (índice), começando do zero. </p>
@@ -96,6 +99,7 @@
           </pre>
           <p> ⚠️ Atenção: a contagem começa no 0, então palavra[0] = 'C', palavra[1] = 'ó', e assim por diante. </p>
       </section>
+	<div id="Percorrendo uma String com laço de repetição">
       <section id="Percorrendo uma String com laço de repetição" >
         <h2> Percorrendo uma String com laço de repetição </h2>
         <p> E se você quiser mostrar cada letra da palavra, uma por linha? Usa um for junto com strlen() (que conta o tamanho da string): </p>
@@ -128,6 +132,7 @@
         </b></code>  
         </pre>
       </section>
+	<div id="Funções de Manipulação de String">
       <section id="Funções de Manipulação de String " >
         <h2>Funções de Manipulação de String </h2>
         <h3>1️⃣ strlen() — Mede o tamanho da string </h3>
