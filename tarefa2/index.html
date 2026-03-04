@@ -1,0 +1,626 @@
+<!-- Atividade do dia 25/02/2026 -->
+
+
+<!DOCTYPE html>
+	<html lang="pt-BR">
+		<head>
+		  <meta charset="UTF-8">
+		  <meta name="viewport" content="widht=device-width, initialscale=1.0">
+		  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    		  <title> Manipulação de string </title>
+    		  
+    		  <style>
+    		    
+    		    /* ESTILO DO MENU de Navegação */ 
+                   nav{  background-color: #3b383c;                       /* background-color → cor de fundo do menu */
+                         font-family: "Segoe UI", sans-serif;           /*font-family → fonte do menu */
+                         border-radius: 30px                            /* border-radius → deixa as bordas arredondadas */
+
+                      }  /* Aqui estão os itens da lista. */
+                      nav ol {list-style: disc;                         /* list-style: none; → remove as bolinhas da lista */
+                              margin: 0;                                /* margin: 0; → remove margem padrão */
+                              padding: 1;                               /* padding: espaço interno */
+                              display: list-item;                            /* display: List-item Aplica o comportamento de lista, incluindo marcadores ou numeração. */
+
+                     } /* Define margem dos itens da lista. */
+                     nav ol li {margin: 2}                              /* margin: 0; → remove margem padrão */
+
+                       /* Estiliza os links do menu: */     
+                      nav ol a {display: block;                       /* display: block → faz o link ocupar toda a área do botão */
+                           padding: 15px 15px;                        /* padding → espaço interno (altura e largura do botão) */
+                           color: #87CEFA;                               /* color: #87CEFA → texto Azul-celeste claro */
+                           text-decoration: none;                     /* text-decoration: none → remove o sublinhado */
+                           
+                      }   /* ESTILO DO CORPO */
+                    body { background-color: #40E0D0;                 /* background-color → Define cor de fundo da página */  
+                           font-family: "Comic Sans MS", sans-serif;  /* font-family → Define a fonte */
+                    }
+    		    
+    		  </style>
+ 		</head>
+		<body>
+		  <header>
+          <h1>Manipulação de Strings em C </h1>
+      </header>
+      <nav>
+        <ol>
+            <li><a href="#A biblioteca <string.h>"                       target="_self">A biblioteca <string.h>                        </a> <br></li>
+            <li><a href="#Como declarar e inicializar uma String ?"      target="_self"> Como declarar e inicializar uma String ?      </a> <br></li>
+            <li><a href="#Como acessar uma letra específica da String ?" target="_self"> Como acessar uma letra específica da String ? </a> <br></li>
+            <li><a href="#Percorrendo uma String com laço de repetição " target="_self"> Percorrendo uma String com laço de repetição  </a> <br></li>
+            <li><a href="#Funções de Manipulação de String "             target="_self">Funções de Manipulação de String               </a> <br></li>
+        </ol>       
+      </nav>
+      <section>
+          <h2>O que é uma String? </h2>
+          <p>Imagine que você quer guardar a palavra "Hello" no computador. Em C, você não tem um tipo chamado "texto" — em vez disso, você usa uma sequência de letras (caracteres) guardadas uma do lado da outra na memória. Isso é uma string.</p>
+          <p>Todo string em C termina com um caractere especial invisível chamado terminador nulo ('\0'). Ele serve para o programa saber onde a palavra acaba.</p>
+      </section>
+      <section id=" A biblioteca <string.h>">
+        <h2> A biblioteca <string.h> </h2>
+        <p> Para usar as funções de manipulação de strings, você precisa incluir essa biblioteca no topo do código: </p>
+        <pre>
+        <code>
+          #include <string.h>
+        </code>  
+        </pre>
+      </section>
+      <section id=" Como declarar e inicializar uma String ?">
+          <h2>  Como declarar e inicializar uma String ? </h2>
+          <h3> Existem duas formas principais: </h3>
+          <p> Forma 1 — Tamanho fixo (você define o espaço):</p>
+          <pre>
+          <code><b>
+            char mensagem[20]; // reserva espaço para até 20 caracteres
+          </b></code>
+          </pre>
+          <p> Forma 2 — Inicializando direto com um valor: </p>
+          <pre>
+          <code><b>
+            char mensagem[] = "Hello, world!";
+          </b></code>
+          </pre>
+          <p> Aqui o compilador conta sozinho quantas letras tem e reserva o espaço certo (incluindo o \0 no final). Muito mais prático! </p>
+      </section>
+      <section id=" Como acessar uma letra específica da String? ">
+         <h2> Como acessar uma letra específica da String ? </h2>
+         <p> Como a string é um array (uma lista), cada letra tem um número de posição (índice), começando do zero. </p>
+         <pre>
+         <code><b>
+            char palavra[] = "Código";
+
+            char segundo_caractere = palavra[1]; // pega a letra na posição 1
+            printf("Segundo caractere: %c\n", segundo_caractere);
+            // Saída: ó
+          </b></code>
+          </pre>
+          <p> ⚠️ Atenção: a contagem começa no 0, então palavra[0] = 'C', palavra[1] = 'ó', e assim por diante. </p>
+      </section>
+      <section id="Percorrendo uma String com laço de repetição" >
+        <h2> Percorrendo uma String com laço de repetição </h2>
+        <p> E se você quiser mostrar cada letra da palavra, uma por linha? Usa um for junto com strlen() (que conta o tamanho da string): </p>
+        <pre>
+        <code><b>
+          #include <stdio.h>
+          #include <string.h> // necessário para usar strlen
+
+          int main() {
+          char palavra[] = "Código";
+          int cont;
+
+          printf("A palavra contém: %i letras.\n", strlen(palavra));
+
+          for (cont = 0; cont < strlen(palavra); cont++) {
+          printf("Letra %i: %c\n", cont, palavra[cont]);
+          }
+          }
+          ```
+
+          **Saída:**
+          ```
+          A palavra contém: 6 letras.
+          Letra 0: C
+          Letra 1: ó
+          Letra 2: d
+          Letra 3: i
+          Letra 4: g
+          Letra 5: o
+        </b></code>  
+        </pre>
+      </section>
+      <section id="Funções de Manipulação de String " >
+        <h2>Funções de Manipulação de String </h2>
+        <h3>1️⃣ strlen() — Mede o tamanho da string </h3>
+        
+        <p>Retorna quantos caracteres a string tem (sem contar o \0). </p>
+        <pre>
+        <code><b>
+          char str[] = "Hello";
+          printf("Length: %lu\n", strlen(str));
+          // Saída: Length: 5
+        </b></code>  
+        </pre>
+        <h3> 2️⃣ strcpy() — Copia uma string para outra </h3>
+        
+        <p> Funciona como um Ctrl+C / Ctrl+V de strings. </p>
+        <pre>
+        <code><b>
+          char source[] = "World";
+          char destination[20];
+          
+          strcpy(destination, source);
+          printf("%s\n", destination);
+          // Saída: World
+        </b></code>  
+        </pre>
+        <p> <strong>💡 Você não pode fazer destination = source diretamente em C. Por isso existe o strcpy.</strong> </p>
+        
+        <h3>3️⃣ strcat() — Junta (concatena) duas strings </h3>
+        <p>Pega uma string e cola outra no final dela. </p>
+        <pre>
+        <code><b>
+          char str1[20] = "Hello, ";
+          char str2[] = "World!";
+          
+          strcat(str1, str2);
+          printf("%s\n", str1);
+          // Saída: Hello, World!
+        </b></code>  
+        </pre>
+        <p> <strong> ⚠️ O str1 precisa ter espaço suficiente para receber o conteúdo de str2! </strong></p>
+        <h4>Exemplo prático — juntando nome e sobrenome: </h4>
+        <pre>
+        <code><b>
+          char primeiro_nome[50];
+          char sobrenome[50];
+          char nome_completo[100];
+          
+          scanf("%s", primeiro_nome);
+          scanf("%s", sobrenome);
+          
+          strcpy(nome_completo, primeiro_nome); // copia o primeiro nome
+          strcat(nome_completo, " ");           // adiciona um espaço
+          strcat(nome_completo, sobrenome);     // adiciona o sobrenome
+          
+          printf("Nome completo: %s\n", nome_completo);
+        </b></code>  
+        </pre>
+        
+        <h3> 4️⃣ strcmp() — Compara duas strings </h3>
+        <p>Verifica se duas strings são iguais ou qual vem "antes" alfabeticamente.</p>
+        <P> •Retorna 0 se as strings forem iguais </P>
+        <p> •Retorna valor negativo se a primeira vem antes alfabeticamente </p>
+        <p> •Retorna valor positivo se a primeira vem depois </p>
+        <pre>
+          <code><b>
+            if (strcmp("apple", "orange") < 0) {
+            printf("apple vem antes de orange\n");
+            }
+          </b></code>
+        </pre>
+        
+        <h3>5️⃣ strncpy() — Copia apenas N caracteres </h3>
+        <p> Igual ao strcpy, mas você define quantas letras quer copiar.</p>
+        <pre>
+          <code><b>
+            char src[] = "World";
+            char dest[20];
+            
+            strncpy(dest, src, 3);  // copia só 3 letras
+            dest[3] = '\0';          // coloca o terminador nulo manualmente!
+            
+            printf("%s\n", dest);
+            // Saída: Wor
+          </b></code>
+        </pre>
+        <p> <strong> ⚠️ O strncpy não coloca o \0 automaticamente, então você precisa fazer isso manualmente. </strong> </p>
+        
+        <h3>6️⃣ strncat() — Concatena apenas N caracteres </h3>
+        <p>Igual ao strcat, mas você define quantas letras do segundo string vão ser coladas. </p>
+        <pre>
+          <code><b>
+            char str1[20] = "Hello, ";
+            char str2[] = "World!";
+            
+            strncat(str1, str2, 3); // cola só as 3 primeiras letras de str2
+            printf("%s\n", str1);
+            // Saída: Hello, Wor
+          </b></code>
+        </pre>
+        
+        <h3> 7️⃣ strncmp() — Compara apenas N caracteres </h3>
+        <p> Igual ao strcmp, mas compara apenas os primeiros N caracteres. </p>
+        <pre>
+          <code><b>
+            if (strncmp("casa", "caso", 3) == 0) {
+                printf("Os primeiros 3 caracteres são iguais!\n");
+            }
+            // Saída: Os primeiros 3 caracteres são iguais!
+          </b></code>
+        </pre>
+        <p> Os 3 primeiros caracteres de "casa" e "caso" são "cas" — iguais! Por isso retorna 0. </p>
+      
+      <h3> 8️⃣ strchr() — Encontra um caractere na string </h3>
+      <p> Procura a primeira vez que um caractere aparece na string e retorna a posição dele. </p>
+      <pre>
+        <code><b>
+          char str[] = "Hello, World!";
+          char *ptr = strchr(str, 'W'); // procura o 'W'
+          
+          if (ptr) {
+              printf("Caractere encontrado: %c\n", *ptr);
+              // Saída: Caractere encontrado: W
+          }
+        </b></code>
+      </pre>
+      <p>Esse *ptr é um ponteiro </p>
+      <p> • Uma variável normal guarda um valor (ex: o número 10) </p>
+      <p> • Um ponteiro guarda um endereço de memória (ex: "o 'W' está na posição 7 da memória") </p>
+      <p> • O *ptr serve para ir até esse endereço e pegar o valor que está lá </p>
+      
+      <h3>9️⃣ strstr() — Encontra uma substring dentro de outra string </h3>
+      <p> Procura uma palavra inteira (ou trecho) dentro de outra string. </p>
+      <pre>
+        <code><b>
+          char str[] = "Hello, World!";
+          char *ptr = strstr(str, "World"); // procura "World" dentro de str
+          
+          if (ptr) {
+              printf("Substring encontrada: %s\n", ptr);
+              // Saída: Substring encontrada: World!
+          }
+        </b></code>
+      </pre>
+      <p> Note que ele retorna tudo a partir de onde encontrou — por isso a saída é World! e não só World.</p>
+      
+      <h3>🔟 strtok() — Divide uma string em partes (tokens) </h3>
+      <p> Quebra uma string em pedaços com base em um separador (como vírgula, espaço, etc.).</p>
+      <pre>
+        <code><b>
+          char str[] = "Hello, World!";
+          char *token = strtok(str, ", "); // separa pelo espaço e vírgula
+          
+          while (token != NULL) {
+              printf("%s\n", token);
+              token = strtok(NULL, ", "); // continua de onde parou
+          }
+          
+          // Saída:
+          // Hello
+          // World!
+        </b></code>
+        </pre>
+      <p>💡 Na primeira chamada você passa a string. Nas chamadas seguintes, passa NULL para continuar de onde parou. </p>
+      </section>
+      
+      <h2> Vamos testar Agora seu conhecimento Sobre  a manipulação de strings e C </h2>
+      <!-- pergunta 1 -->
+      <section>
+        <h3>Pergunta 1: O que é uma string em linguagem C? </h3>
+        <form>
+          <input type="radio" value="Um tipo de dado numérico para armazenar números inteiros" id="p1a" name="pergunta1">
+          <label for="p1a">A: Um tipo de dado numérico para armazenar números inteiros </label><br>
+          
+          <input type="radio" value="Uma sequência de caracteres terminada pelo caractere nulo '\0'" id="p1b" name="pergunta1">
+          <label for="p1b">B: Uma sequência de caracteres terminada pelo caractere nulo '\0' </label><br>
+          
+          <input type="radio" value="Uma função da biblioteca stdio.h para imprimir texto" id="p1c" name="pergunta1">
+          <label for="p1c">C: Uma função da biblioteca stdio.h para imprimir texto </label><br>
+          
+          <input type="radio" value="Um ponteiro que armazena o endereço de um inteiro" id="p1d" name="pergunta1">
+          <label for="p1d">D: Um ponteiro que armazena o endereço de um inteiro </label><br>
+          
+        </form>
+      </section>
+      <section>
+        <h3> Resposta da Pergunta 1</h3>
+        <form>
+          <select name="Resposta1 " id="r1">
+            <option value=" ">Resposta </option>
+            <option value="string é um array de caracteres que sempre termina com o caractere nulo '\0' ">Letra B: Em C, uma string é um array de caracteres que sempre termina com o caractere nulo '\0', que indica ao programa onde a string acaba. </option> 
+          </select>
+        </form>
+      </section>
+      
+      <!-- Pergunta 2 -->
+      <section>
+        <h3>Pergunta 2: Qual das declarações abaixo cria corretamente uma string com espaço para até 20 caracteres ? </h3>
+        <form>
+          <input type="radio" value=" string mensagem[20];" id="p2a" name="pergunta2">
+          <label for="p2a">A: string mensagem[20]; </label><br>
+          
+          <input type="radio" value=" text mensagem = 20; " id="p2b" name="pergunta2">
+          <label for=" p2b">B: text mensagem = 20; </label><br>
+          
+          <input type="radio" value=" char mensagem[20]; " id="p2c" name="pergunta2">
+          <label for=" p2c">C: char mensagem[20]; </label><br>
+          
+          <input type="radio" value=" char mensagem = "20"; " id="p2d" name="pergunta2">
+          <label for=" p2d">D: char mensagem = "20"; </label><br>
+          </form>
+      </section>
+      <section>
+        <h3> Resposta da Perguta 2</h3>
+        <form>
+          <select name="Resposta2" id="r2">
+            <option value=" ">Resposta </option>
+            <option value="Em C, uma string é declarada como um array de char. A sintaxe correta é char nome[tamanho];, onde o tamanho define quantos caracteres podem ser armazenados. "> Letra C: Em C, uma string é declarada como um array de char. A sintaxe correta é char nome[tamanho];, onde o tamanho define quantos caracteres podem ser armazenados.</option>
+          </select>
+        </form>
+      </section>
+      
+      <!-- Pergunta 3 --> 
+      <section>
+        <h3>Pergunta 3: Dado o código abaixo, qual será o valor impresso? </h3>
+        <pre>
+          <code> <b>
+            char palavra[] = "Código";
+            char c = palavra[0];
+            printf("%c", c);
+          </b> </code>
+        </pre>
+        <form>
+          <input type="radio" value=" 6 " id="p3a" name="pergunta3">
+          <label for="p3a">A: 6 </label><br>
+          
+          <input type="radio" value=" Código " id="p3b" name="pergunta3">
+          <label for=" p3b">B: Código </label><br>
+          
+          <input type="radio" value=" C " id="p3c" name="pergunta3">
+          <label for=" p3c">C: C </label><br>
+          
+          <input type="radio" value=" d " id="p3d" name="pergunta3">
+          <label for=" p3d">D: d </label><br>
+          </form>
+      </section>
+      <section>
+        <h3> Resposta da Perguta 3</h3>
+        <form>
+          <select name="Resposta3" id="r3">
+            <option value=" "> Resposta </option>
+            <option value=" Os índices de um array começam em 0. Portanto, palavra[0] retorna o primeiro caractere, que é 'C'."> Letra C:  Os índices de um array começam em 0. Portanto, palavra[0] retorna o primeiro caractere, que é 'C'.</option>
+          </select>
+        </form>
+      </section>
+      
+      <!-- Pergunta 4 --> 
+      <section>
+        <h3>Pergunta 4: Qual função da biblioteca é usada para descobrir quantos caracteres uma string possui ? </h3>
+        
+        <form>
+          <input type="radio" value=" strcpy() " id="p4a" name="pergunta4">
+          <label for="p4a">A: strcpy() </label><br>
+          
+          <input type="radio" value=" strcat() " id="p4b" name="pergunta4">
+          <label for=" p4b">B: strcat() </label><br>
+          
+          <input type="radio" value=" strcmp() " id="p4c" name="pergunta4">
+          <label for=" p4c">C: strcmp() </label><br>
+          
+          <input type="radio" value=" strlen() " id="p4d" name="pergunta4">
+          <label for=" p4d">D: strlen() </label><br>
+          </form>
+      </section>
+      <section>
+        <h3>Resposta da Perguta 4</h3>
+        <form>
+          <select name="Resposta4" id="r4">
+            <option value=" ">Resposta </option>
+            <option value=" strlen() retorna o comprimento (número de caracteres) de uma string, sem contar o terminador nulo '\0'. "> Letra D: strlen() retorna o comprimento (número de caracteres) de uma string, sem contar o terminador nulo '\0'.</option>
+          </select>
+        </form>
+      </section>
+      
+      <!-- Pergunta 5 -->
+      <section>
+        <h3>Pergunta 5: O que faz a função strcpy() no código abaixo ? </h3>
+        <pre>
+          <code><b>
+            char source[] = "World";
+            char destination[20];
+            strcpy(destination, source);
+          </b></code>
+        </pre>
+        <form>
+          <input type="radio" value="Compara as duas strings e retorna 0 se forem iguais " id="p5a" name="pergunta5">
+          <label for="p5a">A: Compara as duas strings e retorna 0 se forem iguais </label><br>
+          
+          <input type="radio" value="Copia o conteúdo de source para dentro de destination " id="p5b" name="pergunta5">
+          <label for=" p5b">B: Copia o conteúdo de source para dentro de destination </label><br>
+          
+          <input type="radio" value="Concatena source ao final de destination" id="p5c" name="pergunta5"
+          <label for="p5c">C: Concatena source ao final de destination</label><br>
+          
+          <input type="radio" value="Conta o número de caracteres de source" id="p5d" name="pergunta5">
+          <label for="p5d">D: Conta o número de caracteres de source</label><br>
+        </form>
+      </section>
+      <section>
+        <h3>Resposta da pergunta 5</h3>
+        <form>
+          <select name="resposta5" id="r5">
+            <option value=" ">Resposta </option>
+            <option value="strcpy(destino, origem) copia a string da origem para o destino. É como um Ctrl+C / Ctrl+V para strings, pois em C não é possível usar o operador = diretamente para copiar strings.">Letra B: strcpy(destino, origem) copia a string da origem para o destino. É como um Ctrl+C / Ctrl+V para strings, pois em C não é possível usar o operador = diretamente para copiar strings.</option>
+          </select>
+        </form>
+      </section>
+      
+      <!-- Pergunta 6 -->
+      <section>
+        <h3>Pergunta 6: Analise o código abaixo. Qual será a saída do printf ? </h3>
+        <pre>
+          <code><b>
+            char str1[20] = "Hello, ";
+            char str2[] = "World!";
+            strcat(str1, str2);
+            printf("%s", str1);
+          </b></code>
+        </pre>
+        <form>
+          <input type="radio" value="Hello," id="p6a" name="pergunta6">
+          <label for="p6a">A: Hello, </label><br>
+          
+          <input type="radio" value="World!" id="p6b" name="pergunta6">
+          <label for=" p6b">B:World! </label><br>
+          
+          <input type="radio" value="Hello, World!" id="p6c" name="pergunta6"
+          <label for="p6c">C: Hello, World!</label><br>
+          
+          <input type="radio" value="Hello, \nWorld!" id="p6d" name="pergunta6">
+          <label for="p6d">D: Hello, \nWorld!</label><br>
+        </form>
+      </section>
+      <section>
+        <h3>Resposta da pergunta 6</h3>
+        <form>
+          <select name="resposta6" id="r6">
+            <option value=" ">Resposta </option>
+            <option value="strcat() concatena (junta) duas strings, adicionando str2 ao final de str1. O resultado é "Hello, World!".">Letra C: strcat() concatena (junta) duas strings, adicionando str2 ao final de str1. O resultado é "Hello, World!".</option>
+          </select>
+        </form>
+      </section>
+      
+       <!-- Pergunta 7 -->
+      <section>
+        <h3>Pergunta 7: A função strcmp("apple", "orange") retorna um valor negativo. O que isso indica ? </h3>
+    
+        <form>
+          <input type="radio" value="As strings são iguais" id="p7a" name="pergunta7">
+          <label for="p7a">A: As strings são iguais </label><br>
+          
+          <input type="radio" value=""apple" vem depois de "orange" na ordem alfabética" id="p7b" name="pergunta7">
+          <label for=" p7b">B: "apple" vem depois de "orange" na ordem alfabética <br>
+          
+          <input type="radio" value=""apple" vem antes de "orange" na ordem alfabética" id="p7c" name="pergunta7"
+          <label for="p7c">C: "apple" vem antes de "orange" na ordem alfabética</label><br>
+          
+          <input type="radio" value=""apple" é maior em tamanho que "orange"" id="p7d" name="pergunta7">
+          <label for="p7d">D: "apple" é maior em tamanho que "orange"</label><br>
+        </form>
+      </section>
+      <section>
+        <h3>Resposta da pergunta 7</h3>
+        <form>
+          <select name="resposta7" id="r7">
+            <option value=" ">Resposta </option>
+            <option value="strcmp() retorna 0 se as strings são iguais, negativo se a primeira vem antes alfabeticamente, e positivo se a primeira vem depois. "apple" vem antes de "orange", então o resultado é negativo.">Letra C: strcmp() retorna 0 se as strings são iguais, negativo se a primeira vem antes alfabeticamente, e positivo se a primeira vem depois. "apple" vem antes de "orange", então o resultado é negativo.</option>
+          </select>
+        </form>
+      </section>
+      
+       <!-- Pergunta 8 -->
+      <section>
+        <h3>Pergunta 8: O que a função strchr() retorna quando encontra o caractere buscado ? </h3>
+        <pre>
+          <code><b>
+            char str[] = "Hello, World!";
+            char *ptr = strchr(str, 'W');
+          </b></code>
+        </pre>
+        <form>
+          <input type="radio" value="O índice numérico (posição) do caractere na string" id="p8a" name="pergunta8">
+          <label for="p8a">A: O índice numérico (posição) do caractere na string </label><br>
+          
+          <input type="radio" value="O valor inteiro do caractere encontrado" id="p8b" name="pergunta8">
+          <label for=" p8b">B:O valor inteiro do caractere encontrado </label><br>
+          
+          <input type="radio" value="Um ponteiro para a primeira ocorrência do caractere na string" id="p8c" name="pergunta8"
+          <label for="p8c">C: Um ponteiro para a primeira ocorrência do caractere na string </label><br>
+          
+          <input type="radio" value="O número de vezes que o caractere aparece na string" id="p8d" name="pergunta8">
+          <label for="p8d">D: O número de vezes que o caractere aparece na string</label><br>
+        </form>
+      </section>
+      <section>
+        <h3>Resposta da pergunta 8</h3>
+        <form>
+          <select name="resposta8" id="r8">
+            <option value=" ">Resposta </option>
+            <option value="strchr() retorna um ponteiro (char *) apontando para a primeira ocorrência do caractere na string. Se não encontrar, retorna NULL. Por isso usa-se char *ptr para guardar o resultado.">Letra C: strchr() retorna um ponteiro (char *) apontando para a primeira ocorrência do caractere na string. Se não encontrar, retorna NULL. Por isso usa-se char *ptr para guardar o resultado.</option>
+          </select>
+        </form>
+      </section>
+      
+      <!-- Pergunta 9 -->
+      <section>
+        <h3>Pergunta 9: Qual é a diferença entre strncpy() e strcpy() ? </h3>
+    
+        <form>
+          <input type="radio" value="strncpy() é mais rápida que strcpy()" id="p9a" name="pergunta9">
+          <label for="p9a">A: strncpy() é mais rápida que strcpy() </label><br>
+          
+          <input type="radio" value="strncpy() copia apenas N caracteres especificados, enquanto strcpy() copia a string inteira" id="p9b" name="pergunta9">
+          <label for=" p9b">B: strncpy() copia apenas N caracteres especificados, enquanto strcpy() copia a string inteira <br>
+          
+          <input type="radio" value="strcpy() copia N caracteres e strncpy() copia a string inteira" id="p9c" name="pergunta9"
+          <label for="p9c">C: strcpy() copia N caracteres e strncpy() copia a string inteira </label><br>
+          
+          <input type="radio" value="Não há diferença, as duas funções fazem a mesma coisa" id="p9d" name="pergunta9">
+          <label for="p9d">D: Não há diferença, as duas funções fazem a mesma coisa </label><br>
+        </form>
+      </section>
+      <section>
+        <h3>Resposta da pergunta 9</h3>
+        <form>
+          <select name="resposta9" id="r9">
+            <option value=" ">Resposta </option>
+            <option value="strncpy(dest, src, n) copia apenas os primeiros n caracteres da string de origem, dando mais controle sobre quantos caracteres serão copiados. Atenção: é necessário adicionar o '\0' manualmente!">Letra B: strncpy(dest, src, n) copia apenas os primeiros n caracteres da string de origem, dando mais controle sobre quantos caracteres serão copiados. Atenção: é necessário adicionar o '\0' manualmente!</option>
+          </select>
+        </form>
+      </section>
+      
+      <!-- Pergunta 10 -->
+      <section>
+        <h3>Pergunta 10: O que o código abaixo imprime na tela ? </h3>
+        <pre>
+          <code><b>
+            char str[] = "Hello, World!";
+            char *ptr = strstr(str, "World");
+            if (ptr) {
+                printf("%s", ptr);
+            }
+          </b></code>
+        </pre>
+        <form>
+          <input type="radio" value="World" id="p10a" name="pergunta10">
+          <label for="p10a">A: World </label><br>
+          
+          <input type="radio" value="Hello," id="p10b" name="pergunta10">
+          <label for=" p10b">B: Hello, </label><br>
+          
+          <input type="radio" value="World!" id="p10c" name="pergunta10"
+          <label for="p10c">C: World! </label><br>
+          
+          <input type="radio" value="Hello, World!" id="p10d" name="pergunta10">
+          <label for="p10d">D: Hello, World!</label><br>
+        </form>
+      </section>
+      <section>
+        <h3>Resposta da pergunta 10</h3>
+        <form>
+          <select name="resposta10" id="r10">
+            <option value=" ">Resposta </option>
+            <option value="strstr() localiza a primeira ocorrência de uma substring e retorna um ponteiro para aquela posição na string original. Como ptr aponta para 'W' em "World!", o printf imprime tudo a partir daí: "World!".">Letra C: strstr() localiza a primeira ocorrência de uma substring e retorna um ponteiro para aquela posição na string original. Como ptr aponta para 'W' em "World!", o printf imprime tudo a partir daí: "World!".</option>
+          </select>
+        </form>
+      </section>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+		</body>
+</html>
+
