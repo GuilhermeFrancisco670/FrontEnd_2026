@@ -1,0 +1,137 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Meu Pet Virtual</title>
+        <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+
+        <!-- Importa o Tailwind CSS (framework de estilização) -->
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> 
+
+        <style>
+            
+             
+              
+            #night-layer {
+                position: fixed;          
+                inset: 0;                 
+                background-image: url('background_noite.png');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                opacity: 0;               /* Começa invisível (dia) */
+                transition: opacity 1.5s ease;  
+                z-index: 0;              
+                pointer-events: none;     
+            }
+            
+            /* ============================================
+               BOTÃO ESCONDIDO DO FERLINI
+               Está no canto inferior esquerdo.
+               É quase invisível, mas aparece ao passar o mouse.
+               ============================================ */
+            #btn-ferlini {
+                position: fixed;
+                bottom: 20px;
+                left: 10px;
+                width: 100px;
+                height: 100px;
+                opacity: 0.06;              /* Quase invisível! */
+                transition: opacity 0.3s;
+                cursor: pointer;
+                z-index: 100;
+                border-radius: 40%;
+                overflow: hidden;
+                border: none;
+                background: none;
+                padding: 0;
+                
+            }
+ 
+            /* Revela o botão ao passar o mouse */
+            #btn-ferlini:hover {
+                opacity: 1;
+            }
+ 
+            #btn-ferlini img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 50%;
+            }
+        </style>
+    </head>
+
+    <!-- <body> com os dois atributos. -->
+    <body 
+        
+        class="bg-pink-50 min-h-screen flex flex-col" 
+        
+        style="
+            background-image: url('background.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        "
+    >
+
+       
+        <div id="night-layer"></div>
+ 
+        <!-- ESTRELAS: geradas pelo JS, aparecem só à noite -->
+        <div id="stars-container"></div>
+ 
+
+        <div id="conteudo" class="flex flex-col items-center w-full px-4">
+           
+
+
+            <!-- Cabeçalho: avatar e campo de nome -->
+            <div class="w-full flex items-center justify-start p-4 gap-4">
+                
+                <div class="avatar">
+                    <div class="w-16 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                        
+                        <img src="cria_eat.png" /> <!-- Imagem do avatar -->
+                    </div>
+                </div>
+
+                <input 
+                    type="text" 
+                    placeholder="Nome da criatura..." 
+                    class="input input-secondary"
+                />
+
+            </div>
+
+            <!-- id="b" (que é o ID usado no script.js).
+                Agora o script controla corretamente a imagem que aparece na tela. -->
+            <img 
+                id="b" 
+                src="b_n.png" 
+                alt="Criatura virtual"
+                class="w-full max-w-md h-auto"
+            />
+            
+            
+            <!-- Botão de pra alimentar o pet -->
+            <div class="mt-12 flex justify-center w-full">
+                <img 
+                    id="btnImage"
+                    src="btn_frut.png"
+                    alt="Alimentar"
+                    class="w-1/3 max-w-[180px] h-auto active:scale-95 transition"
+                    onclick="alimentar()" 
+                />
+                    
+            </div>
+
+        </div>
+
+        
+        <button id="btn-ferlini" title="👀">
+            <img src="ferlini.jpeg" alt="Gostosinho" />
+        </button>
+
+        <script src="script.js"></script>
+    </body>
+</html>
