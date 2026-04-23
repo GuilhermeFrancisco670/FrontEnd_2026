@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Copa do Mundo 2026</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+
+    <Style>
+        body {
+    background-color: #f0f8ff;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+h1 {
+    color: #0073ff;
+}
+
+nav {
+    margin: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #0066cc;
+    margin: 10px;
+}
+
+.secao {
+    background-color: #ffffff;
+    margin: 20px auto;
+    padding: 20px;
+    width: 70%;
+    border-radius: 15px;
+    text-align: left;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #444;
+}
+
+p {
+    font-size: 16px;
+    color: #f7f4f4;
+}
+
+#organizacao{
+   background-color:#00cc07; 
+}
+
+#formato{
+     background-color:#0152f3; 
+}
+
+#impacto{
+    background-color:#f30101;
+}
+    </Style>
+
+</head>
+
+<body>
+
+    <h1>Copa do Mundo 2026 🌍</h1>
+
+    <nav>
+        <a href="#organizacao">Organização</a> |
+        <a href="#formato">Formato</a> |
+        <a href="#impacto">Impacto</a>
+    </nav>
+
+    <section id="organizacao" class="secao">
+        <h2>Organização e Sedes</h2>
+        <p>
+            A Copa do Mundo FIFA de 2026 será realizada em três países: Estados Unidos,
+            Canadá e México. Será a maior Copa da história em número de cidades-sede,
+            com jogos distribuídos por toda a América do Norte.
+        </p>
+    </section>
+
+    <section id="formato" class="secao">
+        <h2>Novo Formato</h2>
+        <p>
+            O torneio contará com 48 seleções, divididas em grupos, aumentando o número
+            de jogos e permitindo maior participação de países.
+        </p>
+    </section>
+
+    <section id="impacto" class="secao">
+        <h2>Expectativas e Impacto</h2>
+        <p>
+            A Copa de 2026 promete ser uma das mais assistidas da história, com grande
+            impacto econômico e cultural, além de fortalecer o futebol mundial.
+        </p>
+    </section>
+
+    <button onclick="mostrarImagem()">Mostrar Tabela de Jogos</button>
+
+    <div id="resultado"></div>
+
+    <!-- <script src="script.js"></script> -->
+
+    <script>
+        function mostrarImagem() {
+    var div = document.getElementById("resultado");
+
+    var img = document.createElement("img");
+    img.src = "Tabela_Jogos.png"; 
+    img.width = 500;
+
+    div.appendChild(img);
+}
+
+
+    </script>
+</body>
+</html>
