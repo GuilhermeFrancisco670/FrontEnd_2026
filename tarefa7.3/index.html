@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Copa do Mundo 2026</title>
+      
+      <style>
+        
+        h1{
+        color:#0000CD;
+        }
+        
+      	body {
+    background-color:#f0f8ff;
+    font-family: Arial;
+    text-align: center;
+}
+        
+       #org{
+        background-color:#00cc07; 
+        } 
+        
+        #formato{
+        background-color:#0152f3; 
+        }
+        
+        #impacto{
+        background-color:#f30101;
+        }
+
+nav {
+    margin: 20px;
+}
+
+nav a {
+    margin: 10px;
+    text-decoration: none;
+    color: #3498db;
+    font-weight: bold;
+}
+
+.secao {
+    background-color: #ffffff;
+    margin: 20px auto;
+    padding: 20px;
+    width: 70%;
+    border-radius: 10px;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+p {
+    font-size: 16px;
+    color: #555;
+}
+
+button {
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+}
+      </style>
+</head>
+<body>
+
+<h1>Copa do Mundo 2026 🌍</h1>
+
+<nav>
+    <a href="#org">Organização</a>
+    <a href="#formato">Formato</a>
+    <a href="#impacto">Impacto</a>
+</nav>
+
+<section id="org" class="secao">
+    <h2>Organização e Sedes</h2>
+    <p>
+        A Copa de 2026 será realizada nos Estados Unidos, Canadá e México,
+        sendo a maior da história em número de cidades-sede.
+    </p>
+</section>
+
+<section id="formato" class="secao">
+    <h2>Novo Formato</h2>
+    <p>
+        O torneio contará com 48 seleções, aumentando o número de jogos
+        e oportunidades para mais países participarem.
+    </p>
+</section>
+
+<section id="impacto" class="secao">
+    <h2>Expectativas e Impacto</h2>
+    <p>
+        A Copa promete grande impacto econômico e cultural,
+        além de aumentar o interesse global pelo futebol.
+    </p>
+</section>
+
+<button onclick="mostrar()">Mostrar Tabela de Jogos</button>
+
+<div id="imagem"></div>
+
+<script>
+  
+  function mostrar() {
+
+    var div = document.getElementById("imagem");
+
+    var img = document.createElement("img");
+    img.src = "Tabela_Jogos.png"; 
+    img.width = 500;
+
+    div.appendChild(img);
+}
+  
+ </script>
+
+</body>
+</html>
