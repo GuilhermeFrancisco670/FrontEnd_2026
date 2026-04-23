@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Grupos da Copa</title>
+    
+      <style>
+      	body {
+    background-color: #f0f8ff;
+    font-family: Arial;
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+    color:#0000CD;    
+}
+
+.grupo {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px auto;
+    width: 60%;
+    border: 1px solid #ccc;
+}
+        
+  #grupoA{
+        background-color:#00cc07; 
+        }
+        
+  #grupoB{
+         background-color:#0152f3; 
+        }
+        
+  #grupoC{
+         background-color:#f30101; 
+        }      
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+button {
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+}
+      </style>
+      
+</head>
+<body>
+
+<h1>Grupos da Copa do Mundo</h1>
+
+<div class="grupo" id="grupoA">
+    <h2>🅰️ Grupo A</h2>
+    <ul>
+        <li>México</li>
+        <li>África do Sul</li>
+        <li>Coreia do Sul</li>
+        <li>República Tcheca</li>
+    </ul>
+
+    <details>
+        <summary>Saiba mais</summary>
+        <p>O jogo de abertura será México x África do Sul...</p>
+    </details>
+</div>
+
+<div class="grupo" id="grupoB">
+    <h2>🅱️ Grupo B</h2>
+    <ul>
+        <li>Canadá</li>
+        <li>Suíça</li>
+        <li>Catar</li>
+        <li>Bósnia</li>
+    </ul>
+
+    <details>
+        <summary>Saiba mais</summary>
+        <p>O Canadá joga em casa...</p>
+    </details>
+</div>
+
+<div class="grupo" id="grupoC">
+    <h2>🅲 Grupo C</h2>
+    <ul>
+        <li>Brasil</li>
+        <li>Marrocos</li>
+        <li>Haiti</li>
+        <li>Escócia</li>
+    </ul>
+
+    <details>
+        <summary>Saiba mais</summary>
+        <p>Brasil nunca perdeu para a Escócia...</p>
+    </details>
+</div>
+
+<button onclick="proximo()">Próximo</button>
+
+<script>
+  	
+  	function proximo() {
+
+    document.getElementById("grupoA").innerHTML = `
+        <h2>Grupo 🅳</h2>
+        <ul>
+            <li>Estados Unidos</li>
+            <li>Paraguai</li>
+            <li>Austrália</li>
+            <li>Turquia</li>
+        </ul>
+        <details>
+            <summary>Saiba mais</summary>
+            <p>Os EUA jogam em casa...</p>
+        </details>
+    `;
+
+    document.getElementById("grupoB").innerHTML = `
+        <h2>Grupo 🅴</h2>
+        <ul>
+            <li>Alemanha</li>
+            <li>Equador</li>
+            <li>Costa do Marfim</li>
+            <li>Curaçao</li>
+        </ul>
+        <details>
+            <summary>Saiba mais</summary>
+            <p>A Alemanha costuma dominar...</p>
+        </details>
+    `;
+
+    document.getElementById("grupoC").innerHTML = `
+        <h2>Grupo 🅵</h2>
+        <ul>
+            <li>Holanda</li>
+            <li>Japão</li>
+            <li>Tunísia</li>
+            <li>Suécia</li>
+        </ul>
+        <details>
+            <summary>Saiba mais</summary>
+            <p>Japão cresce em competições...</p>
+        </details>
+    `;
+}
+  
+</script>
+
+</body>
+</html>
