@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <title>Exercício 05: Gestão de Convidados VIP</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #121b26;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.todo-app {
+    text-align: center;
+    max-width: 400px;
+    padding: 20px;
+    border: 1px solid #146687;
+    border-radius: 5px;
+    background-color: #1da3c7;
+    box-shadow: 0 4px 6px #20dad8;
+}
+
+h1{
+   color:#123b51; 
+}
+
+h2{
+   color:#123b51; 
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    border-bottom: 1px solid #ccc;
+}
+
+li.completed {
+    text-decoration: line-through;
+}
+
+button {
+    margin-top: 10px;
+}
+    </style>
+</head>
+<body>
+    <div class="todo-app">
+        <h1>Infinity Bank</h1>
+        <h2>Lista de Convidados VIP</h2>
+        <input type="text" id="taskInput" placeholder="Adicione um novo convidado">
+        <button onclick="addTask()">Adicionar</button>
+        <ul id="taskList"></ul>
+    </div>
+    <script>
+        // pega o input onde o usuário digita(guarda o elemento id="taskInput" do html dentro da variavel)
+const taskInput = document.getElementById("taskInput"); 
+// pega a lista onde os itens serão adicionados(guarda o elemento id="taskList" do html dentro da variavel)
+const taskList = document.getElementById("taskList"); 
+
+function addTask() {
+  
+  // guardou o texto digitado no campo de adicionar texto dentro de uma constante e remove espaços extras
+  const textInput = taskInput.value.trim(); 
+  
+  // vai comparar o valor de inserção para ver se não é vazio
+  if (textInput !== "") { 
+    
+    // cria um novo item de lista
+    const newItem = document.createElement("li"); 
+    
+    // se não for vazio ele ira adicionar o texto digitado pelo usuario
+    newItem.innerHTML = `
+    <span>${taskInput.value.trim()}</span>
+    <!-- innerHTML = propriedade que define/altera o conteúdo HTML do elemento -->
+    
+    <button onclick="editar(this)">Editar</button> <!-- é criado um botão toda vez que inserimos um texto -->
+    <button onclick="delet(this)">Remover</button>
+    <button onclick="completar(this)">Feito</button>
+    `;
+    // adiciona o li na lista 
+    taskList.appendChild(newItem); 
+    taskInput.value = ""; // limpa o campo  
+  }
+}
+// botão remover
+function delet(button){
+  // vai indicar o item que quer remover
+  const itemtoRemove = button.parentElement; 
+  
+  // vai remover o filho que é o botão
+  taskList.removeChild(itemtoRemove);
+  taskInput.value = '';
+}
+// botão de comcluir
+function completar(button){
+  // vai indicar o item que quer remover
+  const itemToComplet = button.parentElement;
+  
+  itemToComplet.classList.toggle('completed');
+  
+}
+
+// botão de editar
+  function editar(button) {
+  const item = button.parentElement;
+  const span = item.querySelector("span");
+  const novoNome = prompt("Novo nome:", span.innerText);
+  if (novoNome && novoNome.trim() !== "") {
+    span.innerText = novoNome.trim();
+  }
+}
+
+
+    </script>
+</body>
+</html>
