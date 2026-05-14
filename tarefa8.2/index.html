@@ -1,0 +1,205 @@
+
+<!-- ------------------------------------------------------------------------------ -->
+ <!DOCTYPE HTML>
+<html lang="pt-BR">
+
+<head>
+
+    
+    <meta charset="UTF-8"> <!-- Permite usar acentos e caracteres especiais -->
+
+    <!-- Faz o site funcionar corretamente em celulares -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Exercício 02: Conversor Dinâmico</title> 
+
+    <style>
+
+        /* estilização do corpo*/
+        body{
+            font-family: Arial, sans-serif;
+            background-color: #d1d0d0;
+            padding: 30px; /* espaço interno de 30px */
+        }
+
+        /* estilização doCabeçalho */
+        #cabeca{
+            text-align: center;
+            background-color: rgb(232, 98, 98);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        /* a Caixa principal */
+        .container{
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.2); /*Sombra ao redor do elemento*/
+        }
+
+        /* Organização dos elementos do Campo do formulário */
+        .form-content{
+            display: flex; /* Os itens se tornam flexíveis, permitindo alinhamento horizontal ou vertical fácil, distribuição de espaço e ordem. */ 
+            flex-direction: column;
+        }
+
+        /* estilização dos Labels que Define um rótulo para o campo de entrada */
+        label{
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        /* Campos input */
+        input{
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <!-- Cabeçalho -->
+    <div id="cabeca">
+
+        <header> <!--Cabeçalho da página (logo, título) -->
+            <h1>
+                Conversor de Temperatura
+            </h1>
+
+            <p>
+                Celsius ↔ Fahrenheit
+            </p>
+        </header>
+
+    </div>
+
+    <!-- Caixa principal -->
+    <div class="container">
+
+        <div class="form-content">
+
+            <!-- Campo Celsius -->
+            <label for="celsius">
+                Temperatura em Celsius (°C)
+            </label>
+
+            <!-- o step="0.1" permite números decimais -->
+            <input
+                type="number" 
+                id="celsius"
+                placeholder="Digite em Celsius"
+                step="0.1"
+            >
+            <!--
+                type="number" o tipo de entrada é de numero 
+                id="celsius" vai ter um id de identificação como celsius
+                placeholder="Digite em Celsius"
+                step="0.1" permite números decimais
+            -->
+
+
+            <!-- Campo do Fahrenheit -->
+            <label for="fahrenheit">
+                Temperatura em Fahrenheit (°F)
+            </label>
+
+            <input
+                type="number"
+                id="fahrenheit"
+                placeholder="Digite em Fahrenheit"
+                step="0.1"
+            >
+            <!--placeholder é um texto temporário exibido dentro de campos de formulário (<input> ou <textarea>) que fornece uma dica, exemplo ou formato esperado de dado -->
+
+        </div>
+
+    </div>
+
+    <script>
+
+        // =========================
+        // PEGANDO OS ELEMENTOS HTML
+        // =========================
+
+        // pega o input Celsius
+        const celsiusInput = document.getElementById("celsius");
+
+        // pega o input Fahrenheit
+        const fahrenheitInput = document.getElementById("fahrenheit");
+
+        // =========================
+        // EVENTO DO CELSIUS
+        // =========================
+
+        // toda vez que o usuário digitar
+        celsiusInput.addEventListener("input", () => {
+            //  addEventListener("input") é usado para execute algo SEMPRE que o usuário digitar
+
+            // pega o valor digitado
+            const celsius = parseFloat(celsiusInput.value);
+            // o parseFloat Transforma texto em número decimal.
+
+            // verifica se está vazio
+            if(isNaN(celsius)){
+                // isNaN() faz uma Verificação: isso NÃO é um número?
+
+                // limpa o outro campo
+                fahrenheitInput.value = "";
+
+                return;
+            }
+
+            // fórmula:
+            // F = (C * 9/5) + 32
+            //Conversão Celsius → Fahrenheit
+            const fahrenheit = (celsius * 9/5) + 32;
+
+
+            // toFixed(2) deixa com 2 casas decimais
+            fahrenheitInput.value = fahrenheit.toFixed(2);
+
+        });
+
+        // =========================
+        // EVENTO DO FAHRENHEIT
+        // =========================
+
+        fahrenheitInput.addEventListener("input", () => {
+
+            // pega valor digitado
+            const fahrenheit = parseFloat(fahrenheitInput.value);
+
+            // verifica se está vazio
+            if(isNaN(fahrenheit)){
+
+                // limpa outro campo
+                celsiusInput.value = "";
+
+                return;
+            }
+
+            // fórmula:
+            // C = (F - 32) * 5/9
+            //Conversão Fahrenheit → Celsius
+            const celsius = (fahrenheit - 32) * 5/9;
+
+
+            // mostra com 2 casas decimais
+            celsiusInput.value = celsius.toFixed(2);
+
+        });
+
+    </script>
+
+</body>
+</html>
