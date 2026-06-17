@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 06: Crédito para Festas & Eventos</title>
+    <!-- Link para o arquivo CSS externo, responsável pela estilização da página -->
+    <style>
+
+        body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #616161;
+}
+
+.container {
+    background-color: #dfe5fc;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.input-group input[type="number"],
+.input-group select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+
+.resultado {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 4px;
+    font-size: 16px;
+    text-align: left;
+    background-color: #e9ecef;
+    color: #333;
+    border: 1px solid #ced4da;
+}
+
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de Orçamento para Eventos</h1>
+
+        <div class="input-group">
+            <label for="pacote">Escolha o Pacote:</label>
+            <select id="pacote">
+                <option value="standard">Standard (R$ 50,00 por pessoa)</option>
+                <option value="premium">Premium (R$ 80,00 por pessoa)</option>
+                <option value="infinity_deluxe">Infinity Deluxe (R$ 120,00 por pessoa)</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for="quantidadePessoas">Quantidade de Pessoas:</label>
+            <input type="number" id="quantidadePessoas" placeholder="Ex: 50" min="1" step="1">
+        </div>
+
+        <button id="calcularOrcamento">Calcular Orçamento</button>
+
+        <div id="resultado" class="resultado"></div>
+    </div>
+
+    
+    <script>
+
+           
+document.addEventListener('DOMContentLoaded', () => {
+   
+    const calcularOrcamentoBtn = document.getElementById('calcularOrcamento');
+
+    
+   
+    calcularOrcamentoBtn.addEventListener('click', calcularOrcamento);
+
+    function calcularOrcamento() {
+        
+        const pacoteSelecionado = document.getElementById('pacote').value;
+        const quantidadePessoas = Number(document.getElementById('quantidadePessoas').value);
+        const resultadoDiv = document.getElementById('resultado');
+
+        
+        resultadoDiv.innerHTML = '';
+
+        
+        if (isNaN(quantidadePessoas) || quantidadePessoas <= 0) {
+            resultadoDiv.innerHTML = 'Por favor, insira uma quantidade válida de pessoas.';
+            return; 
+        }
+
+        
+        
+        let valorPorPessoa = 0;
+        switch (pacoteSelecionado) {
+            case 'standard':
+                valorPorPessoa = 50.00;
+                break;
+            case 'premium':
+                valorPorPessoa = 80.00;
+                break;
+            case 'infinity_deluxe':
+                valorPorPessoa = 120.00;
+                break;
+            default:
+                resultadoDiv.innerHTML = 'Pacote selecionado inválido.';
+                return;
+        }
+
+        
+        let custoBruto = valorPorPessoa * quantidadePessoas;
+
+        
+        const taxaServicoPercentual = 0.10; // 10%
+        const valorTaxaServico = custoBruto * taxaServicoPercentual;
+        let custoComTaxa = custoBruto + valorTaxaServico;
+
+        
+        let descontoAplicado = 0;
+        if (quantidadePessoas > 100) {
+            const descontoFidelidadePercentual = 0.05; // 5%
+            descontoAplicado = custoComTaxa * descontoFidelidadePercentual;
+            custoComTaxa -= descontoAplicado;
+        }
+
+        
+        const custoTotalFinal = custoComTaxa;
+
+        
+        resultadoDiv.innerHTML = `
+            <p><strong>Resumo do Orçamento:</strong></p>
+            <p>Custo Bruto: R$ ${custoBruto.toFixed(2)}</p>
+            <p>Taxa de Serviço (10%): R$ ${valorTaxaServico.toFixed(2)}</p>
+            <p>Desconto Aplicado: R$ ${descontoAplicado.toFixed(2)}</p>
+            <p><strong>Custo Total Final: R$ ${custoTotalFinal.toFixed(2)}</strong></p>
+        `;
+    }
+});
+
+
+    </script>
+</body>
+</html>
