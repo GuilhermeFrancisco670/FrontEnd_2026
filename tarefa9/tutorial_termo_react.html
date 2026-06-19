@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial: Criando o Jogo Termo com React</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        main {
+            padding: 40px;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: #764ba2;
+            font-size: 1.3em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+            font-size: 1em;
+        }
+
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #d63384;
+        }
+
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            line-height: 1.4;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+        }
+
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+        }
+
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 20px;
+            border-left: 4px solid #ffc107;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
+        .highlight strong {
+            color: #856404;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: #f9f9f9;
+        }
+
+        table th {
+            background: #667eea;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table tr:hover {
+            background: #f0f0f0;
+        }
+
+        .component-box {
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .component-box h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            background: #f9f9f9;
+            padding: 30px 40px;
+            border-top: 1px solid #eee;
+            text-align: center;
+            color: #666;
+        }
+
+        footer h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        footer ol {
+            text-align: left;
+            display: inline-block;
+        }
+
+        footer li {
+            margin-bottom: 10px;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            background: #764ba2;
+        }
+
+        @media (max-width: 768px) {
+            main {
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            h2 {
+                font-size: 1.4em;
+            }
+
+            pre {
+                font-size: 0.85em;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎮 Tutorial: Criando o Jogo Termo com React</h1>
+            <p>Aprenda a construir um jogo interativo usando React, com ênfase em React Fragments</p>
+        </header>
+
+        <main>
+            <!-- Seção 1: Introdução -->
+            <section id="introducao">
+                <h2>1. Introdução</h2>
+                <p>Bem-vindo a este tutorial, onde embarcaremos na jornada de recriar o popular jogo de adivinhação de palavras, o <strong>Termo</strong>, utilizando a biblioteca React. Nosso objetivo é construir uma aplicação web funcional e didática, inspirada na simplicidade e clareza do <a href="https://react.dev/learn/tutorial-tic-tac-toe" target="_blank">tutorial oficial de Tic-Tac-Toe do React</a>.</p>
+                <p>Ao longo deste guia, faremos uso dos arquivos de projeto já fornecidos (<code>TermoGame.html</code>, <code>TermoGame.css</code>, <code>TermoGame.jsx</code>) e daremos uma atenção especial à implementação de <strong>React Fragments</strong>, uma funcionalidade essencial para garantir que os componentes React retornem um único elemento raiz sem adicionar nós desnecessários ao DOM.</p>
+            </section>
+
+            <!-- Seção 2: Configuração Inicial -->
+            <section id="configuracao">
+                <h2>2. Configuração Inicial</h2>
+                <p>Para iniciar nosso projeto, é fundamental compreender como os arquivos fornecidos se interligam para formar a base da aplicação. A estrutura é intencionalmente simples, permitindo que o foco permaneça na lógica do React.</p>
+
+                <h3>2.1. TermoGame.html</h3>
+                <p>Este arquivo HTML é o ponto de entrada da nossa aplicação. Ele carrega o arquivo de estilos CSS e o script JavaScript principal (<code>TermoGame.jsx</code>), onde reside toda a lógica React. Observe a inclusão do <code>div</code> com <code>id="root"</code>, que servirá como o ponto de montagem para nossa aplicação React.</p>
+                <pre><code>&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt; Aula 26/05/2026 - Jogo das Palavras &lt;/title&gt;
+    &lt;link rel="stylesheet" href="TermoGame.css"&gt;
+   &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id="root"&gt; &lt;/div&gt;  
+    &lt;script type="module" src="TermoGame.jsx"&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+                <h3>2.2. TermoGame.css</h3>
+                <p>O arquivo <code>TermoGame.css</code> contém todas as regras de estilização para o jogo. Ele define a aparência dos quadrados das letras, das linhas do tabuleiro e do teclado virtual, incluindo as cores de feedback (<code>green</code>, <code>yellow</code>, <code>gray</code>) que indicam o status de cada letra.</p>
+                <pre><code>/* Exemplo de estilo para um quadrado */
+.square {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  border: 2px solid #d3d6da;
+  font-size: 32px;
+  font-weight: bold;
+  height: 60px;
+  width: 60px;
+  margin: 3px;
+  text-transform: uppercase;
+}
+
+/* Cores de feedback */
+.square.green { background: #6aaa64; border-color: #6aaa64; color: white; }
+.square.yellow { background: #c9b458; border-color: #c9b458; color: white; }
+.square.gray { background: #787c7e; border-color: #787c7e; color: white; }</code></pre>
+
+                <h3>2.3. TermoGame.jsx</h3>
+                <p>Este é o coração da nossa aplicação. Ele contém o código JavaScript/React que define os componentes, gerencia o estado do jogo e interage com o DOM. As importações do React e ReactDOM são feitas via CDN, o que simplifica a configuração e permite que o código seja executado diretamente no navegador sem a necessidade de um ambiente de build complexo.</p>
+                <pre><code>import React, { useState, useEffect } from "https://esm.sh/react";
+import ReactDOM from "https://esm.sh/react-dom";
+import { createRoot } from "https://esm.sh/react-dom/client";
+
+// ... (restante do código React)</code></pre>
+            </section>
+
+            <!-- Seção 3: Componentes React -->
+            <section id="componentes">
+                <h2>3. Componentes React</h2>
+                <p>Nossa aplicação é modularizada em componentes React, cada um com uma responsabilidade específica. Essa abordagem facilita a manutenção e a compreensão do código.</p>
+
+                <div class="component-box">
+                    <h4>📦 O que é um Componente React?</h4>
+                    <p>Um componente React é uma função JavaScript que retorna JSX (uma sintaxe que se assemelha a HTML). Componentes permitem que você divida a interface em partes reutilizáveis e gerenciáveis.</p>
+                </div>
+
+                <h3>3.1. Componente Square (Quadrado da Letra)</h3>
+                <p>O componente <code>Square</code> é o elemento mais básico do nosso tabuleiro. Ele é responsável por exibir uma única letra e aplicar uma cor de fundo que reflete o status da letra (correta, no lugar errado ou incorreta). Ele recebe as propriedades <code>letter</code> e <code>color</code>.</p>
+                <pre><code>function Square({ letter, color }) {
+  return &lt;div className={`square ${color || ''}`}&gt;{letter}&lt;/div&gt;;
+}</code></pre>
+
+                <h3>3.2. Componente Row (Linha do Tabuleiro)</h3>
+                <p>O componente <code>Row</code> representa uma linha completa do tabuleiro do jogo Termo, composta por cinco <code>Square</code>s. Ele recebe as propriedades <code>guess</code> (a palavra tentada) e <code>colors</code> (um array com as cores correspondentes a cada letra).</p>
+                <div class="highlight">
+                    <strong>⭐ React Fragments em Ação:</strong> Aqui, utilizamos um <strong>React Fragment</strong> (<code>&lt;&gt;...&lt;/&gt;</code>) para agrupar os <code>Square</code>s. Isso é crucial porque um componente React deve retornar um único elemento raiz. O Fragment nos permite fazer isso sem introduzir um <code>div</code> extra no DOM, o que poderia afetar a estilização ou a estrutura semântica.
+                </div>
+                <pre><code>function Row({ guess, colors }) {
+  return (
+    &lt;&gt;
+      {[...Array(5)].map((_, i) =&gt; (
+        &lt;Square 
+          key={i} 
+          letter={guess ? guess[i] : ''} 
+          color={colors ? colors[i] : ''} 
+        /&gt;
+      ))}
+    &lt;/&gt;
+  );
+}</code></pre>
+
+                <h3>3.3. Componente Keyboard (Teclado Virtual)</h3>
+                <p>O <code>Keyboard</code> é o componente que permite ao jogador interagir com o jogo, digitando letras e acionando as funções de <code>ENTER</code> e <code>BACKSPACE</code>. Ele recebe <code>onKeyClick</code> (uma função para lidar com o clique nas teclas) e <code>colorsByKey</code> (um mapa de cores para cada tecla).</p>
+                <div class="highlight">
+                    <strong>⭐ React Fragments em Ação:</strong> Assim como o <code>Row</code>, o <code>Keyboard</code> também utiliza <strong>React Fragments</strong> (<code>&lt;&gt;...&lt;/&gt;</code>) para agrupar as diferentes linhas do teclado. Cada linha é um <code>div</code> que contém os botões das teclas. O uso do Fragment aqui garante que o componente <code>Keyboard</code> retorne uma única estrutura semântica, mesmo que visualmente ele seja composto por múltiplos <code>div</code>s de linhas.
+                </div>
+                <pre><code>function Keyboard({ onKeyClick, colorsByKey }) {
+  const linhas = [
+    ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
+    ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
+    ['ENTER', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', 'BACKSPACE']
+  ];
+
+  return (
+    &lt;&gt;
+      {linhas.map((linha, i) =&gt; (
+        &lt;div key={i} className="board-row"&gt;
+          {linha.map((tecla) =&gt; (
+            &lt;button 
+              key={tecla} 
+              className={`key ${colorsByKey[tecla] || ''}`} 
+              onClick={() =&gt; onKeyClick(tecla)}
+            &gt;
+              {tecla === 'BACKSPACE' ? '⌫' : tecla}
+            &lt;/button&gt;
+          ))}
+        &lt;/div&gt;
+      ))}
+    &lt;/&gt;
+  );
+}</code></pre>
+
+                <h3>3.4. Componente Game (Componente Principal)</h3>
+                <p>O componente <code>Game</code> é o orquestrador de toda a aplicação. Ele gerencia o estado do jogo, incluindo as tentativas (<code>attempts</code>), a linha e coluna atuais (<code>currentRow</code>, <code>currentCol</code>), o status de fim de jogo (<code>gameOver</code>) e o mapa de cores das teclas (<code>colorMap</code>).</p>
+                <div class="highlight">
+                    <strong>⭐ React Fragments como Elemento Raiz:</strong> É no componente <code>Game</code> que o uso de React Fragments se torna mais evidente como elemento raiz. Conforme a regra do React, um componente deve retornar um único elemento. No nosso caso, o <code>Game</code> precisa renderizar o título, a mensagem de status, o tabuleiro e o teclado. Em vez de envolver tudo em um <code>div</code> extra, que não teria propósito semântico, utilizamos o <strong>React Fragment</strong> (<code>&lt;&gt;...&lt;/&gt;</code>) como o elemento raiz do retorno do componente. Isso agrupa todos os elementos visuais de forma eficiente e limpa.
+                </div>
+                <pre><code>function Game() {
+  const [attempts, setAttempts] = useState(Array(6).fill(null));
+  const [currentRow, setCurrentRow] = useState(0);
+  const [currentCol, setCurrentCol] = useState(0);
+  const [gameOver, setGameOver] = useState(false);
+  const [colorMap, setColorMap] = useState({});
+
+  // ... (lógica do jogo: handleEnter, handleKeyPress, useEffect)
+
+  return (
+    &lt;&gt;
+      &lt;div className="game-container"&gt;
+        &lt;h1&gt;Jogo das Palavras&lt;/h1&gt;
+        {gameOver && &lt;div className="status"&gt;{gameOver}&lt;/div&gt;}
+        
+        &lt;div className="board"&gt;
+          {/* Renderização das linhas do tabuleiro */}
+        &lt;/div&gt;
+
+        &lt;div style={{ marginTop: '20px' }}&gt;
+          &lt;Keyboard onKeyClick={handleKeyPress} colorsByKey={colorMap} /&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/&gt;
+  );
+}</code></pre>
+            </section>
+
+            <!-- Seção 4: Renderização -->
+            <section id="renderizacao">
+                <h2>4. Renderização do Aplicativo</h2>
+                <p>Finalmente, para que nossa aplicação React seja exibida no navegador, precisamos renderizá-la no DOM. Isso é feito no final do arquivo <code>TermoGame.jsx</code>.</p>
+                <p>Utilizamos <code>createRoot</code> do <code>react-dom/client</code> para criar uma raiz de renderização no elemento com <code>id="root"</code> no nosso HTML. Em seguida, <code>root.render</code> é chamado para renderizar o componente <code>Game</code> dentro de <code>React.StrictMode</code>. O <code>StrictMode</code> é uma ferramenta útil para identificar problemas potenciais na aplicação durante o desenvolvimento.</p>
+                <pre><code>const root = createRoot(document.getElementById("root"));
+root.render(
+  &lt;React.StrictMode&gt;
+    &lt;Game /&gt;
+  &lt;/React.StrictMode&gt;
+);</code></pre>
+            </section>
+
+            <!-- Seção 5: Conclusão -->
+            <section id="conclusao">
+                <h2>5. Conclusão</h2>
+                <p>Parabéns! Você acaba de percorrer o processo de criação de um jogo Termo funcional utilizando React, com base em uma estrutura de projeto existente e seguindo as melhores práticas, como o uso de <strong>React Fragments</strong> para uma estrutura de componentes limpa e eficiente. Este tutorial demonstrou como modularizar a aplicação em componentes, gerenciar o estado e interagir com o usuário.</p>
+
+                <p>Esperamos que este tutorial tenha sido útil para aprofundar seu conhecimento em React e na construção de aplicações interativas!</p>
+            </section>
+        </main>
+
+        <footer>
+            <h3>Referências</h3>
+            <ol>
+                <li><a href="https://react.dev/learn/tutorial-tic-tac-toe" target="_blank">React.dev - Tutorial: Tic-Tac-Toe</a></li>
+                <li>Arquivos do Projeto: <code>TermoGame.html</code>, <code>TermoGame.css</code>, <code>TermoGame.jsx</code></li>
+            </ol>
+        </footer>
+    </div>
+</body>
+</html>
